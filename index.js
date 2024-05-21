@@ -1,11 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 const app = express();
 
-const jobRoutes = require("./routes/job")
+dotenv.config();
 
-mongoose.connect("mongodb+srv://Yugal6832:X9FcJGhikFeCP0Mm@jobapp.dcywvus.mongodb.net/")
+const jobRoutes = require("./routes/job")
+// console.log(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL)
 .then(() => console.log("Connection with Database established successfully"))
 .catch((err) => console.log("ERROR CONNECTING WITH DATABASE", err));
 
